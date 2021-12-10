@@ -52,7 +52,15 @@ then
     PLUGIN_ID=$(grep  power-manager-plugin /etc/xdg/xfce4/panel/default.xml | perl -n -e '/plugin-(\d+)/ && print $1')
     sed -i "s@<value type=\"int\" value=\"${PLUGIN_ID}\"/>@@g" /etc/xdg/xfce4/panel/default.xml
   elif [ "$DISTRO" = "ubuntu" ]; then
+    add-apt-repository ppa:kisak/kisak-mesa
+    apt-get update
     apt-get install -y supervisor xfce4 xfce4-terminal xterm
+    #add-apt-repository ppa:zorinos/stable
+    #apt-get update
+    #apt-get install zorinos-themes
+    #sudo add-apt-repository ppa:noobslab/icons2
+    #sudo apt-get update
+    #sudo apt-get install zorinos-icons
   elif [ "$DISTRO" = "centos" ]; then
     yum install -y epel-release
     disable_epel_nss_wrapper_that_breaks_firefox

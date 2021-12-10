@@ -1,4 +1,4 @@
-ARG BASE_IMAGE="ubuntu:18.04"
+ARG BASE_IMAGE="ubuntu:20.04"
 FROM $BASE_IMAGE AS install_tools
 ARG DISTRO=ubuntu
 
@@ -10,8 +10,8 @@ COPY ./src/ubuntu/install/tools $INST_SCRIPTS/tools/
 RUN bash $INST_SCRIPTS/tools/install_tools.sh && rm -rf $INST_SCRIPTS/tools/
 
 ### Environment config
-ARG START_XFCE4=0
-ARG START_PULSEAUDIO=0
+ARG START_XFCE4=1
+ARG START_PULSEAUDIO=1
 ARG BG_IMG=bg_kasm.png
 ARG EXTRA_SH=noop.sh
 ARG DISTRO=ubuntu
@@ -90,8 +90,8 @@ COPY ./src/ubuntu/install/audio_input $INST_SCRIPTS/audio_input/
 RUN bash $INST_SCRIPTS/audio_input/install_audio_input.sh && rm -rf $INST_SCRIPTS/audio_input/
 
 ### Install custom cursors
-COPY ./src/ubuntu/install/cursors $INST_SCRIPTS/cursors/
-RUN bash $INST_SCRIPTS/cursors/install_cursors.sh && rm -rf $INST_SCRIPTS/cursors/
+#COPY ./src/ubuntu/install/cursors $INST_SCRIPTS/cursors/
+#RUN bash $INST_SCRIPTS/cursors/install_cursors.sh && rm -rf $INST_SCRIPTS/cursors/
 
 ### Install Squid
 COPY ./src/ubuntu/install/squid/install/ $INST_SCRIPTS/squid_install/

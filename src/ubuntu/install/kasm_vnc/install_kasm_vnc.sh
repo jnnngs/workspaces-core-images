@@ -41,9 +41,8 @@ else
     wget "${BUILD_URL}" -O kasmvncserver.deb
 
     apt-get update
-    apt-get install -y gettext ssl-cert
-    dpkg -i /tmp/kasmvncserver.deb
-    apt-get -yf install
+    apt-get install -y gettext ssl-cert gdebi-core
+    gdebi --n  /tmp/kasmvncserver.deb
     rm -f /tmp/kasmvncserver.deb
 fi
 #mkdir $KASM_VNC_PATH/certs
